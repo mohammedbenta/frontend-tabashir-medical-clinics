@@ -1,7 +1,18 @@
-# Tabashir Clinics — prospect demo
+# تباشير الطبية — نموذج موقع
 
-Demo site for **Tabashir Clinics** ([tabashirclinics.com](https://tabashirclinics.com)), a dental + dermatology/laser clinic prospect.
+موقع تعريفي فاخر لمجمع طبي خاص في جدة، مبني لإقناع ملاك العيادات باستبدال موقعهم الحالي.
 
-## Status
+## التشغيل
 
-Project created. Site scaffolding has not started yet.
+```bash
+npm install
+npm run dev
+```
+
+ثم افتح [http://localhost:3000](http://localhost:3000)
+
+## الملاحظات
+
+- الموقع عربي بالكامل واتجاهه من اليمين لليسار.
+- الحجز تفاعلي للعرض فقط، دون نظام مواعيد خلفي.
+- بعض الأرقام والأسماء والعروض توضيحية وتُستبدل ببيانات العيادة.

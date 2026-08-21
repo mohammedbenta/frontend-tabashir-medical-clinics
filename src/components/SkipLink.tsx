@@ -1,0 +1,15 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
+
+export function SkipLink() {
+  const { t } = useI18n();
+  return (
+    <a
+      href="#booking"
+      className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-paper focus:px-4 focus:py-2 focus:text-brand"
+    >
+      {t.skip}
+    </a>
+  );
+}
