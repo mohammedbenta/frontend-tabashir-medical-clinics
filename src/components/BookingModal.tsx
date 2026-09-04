@@ -10,7 +10,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
-import { doctors, specialties } from "@/data/content";
+import { doctors, departments } from "@/data/content";
 import { whatsappHref } from "@/lib/site";
 import { WhatsAppIcon } from "@/components/Logo";
 import { useI18n, type Lang } from "@/lib/i18n";
@@ -22,6 +22,7 @@ const BookingContext = createContext<{
   openBooking: (preset?: Preset) => void;
   closeBooking: () => void;
   isOpen: boolean;
+  preset: Preset;
 } | null>(null);
 
 export function useBooking() {
@@ -59,25 +60,19 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 
   const openBooking = useCallback((next?: Preset) => {
     setPreset(next ?? {});
-    setOpen(true);
+    setOpen(false);
+    requestAnimationFrame(() => {
+      const el = document.getElementById("booking");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      window.location.assign("/#booking");
+    });
   }, []);
 
   const closeBooking = useCallback(() => setOpen(false), []);
 
-  useEffect(() => {
-    const onClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
-      const trigger = target?.closest<HTMLAnchorElement>('a[href="#booking"]');
-      if (!trigger) return;
-      event.preventDefault();
-      openBooking({
-        specialty: trigger.dataset.specialty,
-        doctor: trigger.dataset.doctor,
-      });
-    };
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, [openBooking]);
 
   useEffect(() => {
     if (!open) return;
@@ -93,7 +88,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   }, [open, closeBooking]);
 
   return (
-    <BookingContext.Provider value={{ openBooking, closeBooking, isOpen: open }}>
+    <BookingContext.Provider value={{ openBooking, closeBooking, isOpen: open, preset }}>
       {children}
       {open && (
         <BookingDialog
@@ -126,14 +121,20 @@ function BookingDialog({
   const filteredDoctors = doctors.filter((d) =>
     specialty ? d.specialtyId === specialty : true,
   );
-  const doctorOptions = filteredDoctors;
+  const hasDoctors = filteredDoctors.length > 0;
+  const selectedDoctor = filteredDoctors.find((d) => d.id === doctor);
+  const selectedSpecialty = departments.find((s) => s.id === specialty);
+  const doctorLabel = selectedDoctor?.name[lang] ?? t.onDuty;
 
-  const step = !specialty ? 1 : !doctor ? 2 : !date ? 3 : !time ? 4 : 5;
+  const step = !specialty ? 1 : !doctor && hasDoctors ? 2 : !date ? 3 : !time ? 4 : 5;
   const canSubmit = Boolean(
-    specialty && doctor && date && time && name.trim() && phone.replace(/\s/g, "").length >= 9,
+    specialty &&
+      (doctor || !hasDoctors) &&
+      date &&
+      time &&
+      name.trim() &&
+      phone.replace(/\s/g, "").length >= 9,
   );
-  const selectedDoctor = doctorOptions.find((d) => d.id === doctor);
-  const selectedSpecialty = specialties.find((s) => s.id === specialty);
 
   function confirm(e: FormEvent) {
     e.preventDefault();
@@ -155,7 +156,7 @@ function BookingDialog({
     <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-6" role="presentation">
       <button
         type="button"
-        className="absolute inset-0 bg-pine-deep/60 backdrop-blur-[3px]"
+        className="absolute inset-0 bg-pine-deep/65 backdrop-blur-[6px]"
         aria-label={t.closeDialog}
         onClick={onClose}
       />
@@ -163,35 +164,35 @@ function BookingDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby="booking-title"
-        className="relative z-10 flex max-h-[92svh] w-full max-w-[34rem] flex-col overflow-hidden rounded-t-[1.6rem] bg-paper shadow-[0_30px_80px_-24px_rgba(8,41,40,0.45)] sm:rounded-[1.6rem]"
+        className="relative z-10 flex max-h-[92svh] w-full max-w-[34rem] flex-col overflow-hidden rounded-t-[1.8rem] bg-paper shadow-[0_32px_80px_-24px_rgba(6,30,29,0.5)] sm:rounded-[1.8rem]"
       >
-        <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4 md:px-6">
+        <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-5 md:px-7">
           <div>
             <p className="eyebrow">{t.bookingEyebrow}</p>
-            <h2 id="booking-title" className="mt-1 text-xl font-normal text-pine">
+            <h2 id="booking-title" className="mt-1.5 text-xl font-medium text-pine">
               {t.bookingTitle}
             </h2>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-lg text-pine hover:border-brand"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-lg text-pine transition-colors hover:border-brand hover:text-brand"
             aria-label={t.close}
           >
             ×
           </button>
         </div>
 
-        <div className="overflow-y-auto px-5 py-5 md:px-6 md:py-6">
+        <div className="overflow-y-auto px-6 py-6 md:px-7">
           {!submitted && (
-            <ol className="mb-6 grid grid-cols-4 gap-2">
+            <ol className="mb-7 grid grid-cols-4 gap-2">
               {[t.stepSpecialty, t.stepDoctor, t.stepDate, t.stepConfirm].map((label, i) => (
                 <li key={label} className="text-center">
                   <span
                     className={cn(
-                      "mx-auto mb-1 flex h-6 w-6 items-center justify-center rounded-full text-[0.7rem]",
+                      "mx-auto mb-1.5 flex h-7 w-7 items-center justify-center rounded-full text-[0.7rem] font-medium transition-colors",
                       step > i
-                        ? "bg-brand text-pine-deep"
+                        ? "bg-brand text-pine-deep shadow-[0_2px_8px_-2px_rgba(18,179,176,0.3)]"
                         : "bg-cream text-muted",
                     )}
                   >
@@ -205,21 +206,26 @@ function BookingDialog({
 
           {submitted ? (
             <div className="py-4">
-              <p className="eyebrow">{t.received}</p>
-              <h3 className="mt-3 text-2xl font-normal text-pine">{t.receivedTitle}</h3>
+              <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand/10">
+                <svg viewBox="0 0 24 24" className="h-7 w-7 text-brand" fill="none" aria-hidden>
+                  <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <p className="eyebrow mt-4">{t.received}</p>
+              <h3 className="mt-3 text-2xl font-medium text-pine">{t.receivedTitle}</h3>
               <p className="mt-3 leading-8 text-ink-soft">
                 {name} · {phone}
                 <br />
-                {selectedSpecialty?.name[lang]} · {selectedDoctor?.name[lang]}
+                {selectedSpecialty?.name[lang]} · {doctorLabel}
                 <br />
                 {date} — {time}
               </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={whatsappHref(
                     t.waConfirm(
                       selectedSpecialty?.name[lang] ?? "",
-                      selectedDoctor?.name[lang] ?? "",
+                      selectedDoctor?.name[lang] ?? t.onDuty,
                       date,
                       time,
                       name,
@@ -228,7 +234,7 @@ function BookingDialog({
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-whatsapp px-5 text-sm text-white"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-sm font-medium text-white shadow-[0_4px_16px_-4px_rgba(37,211,102,0.4)]"
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   {t.confirmWhatsapp}
@@ -236,16 +242,16 @@ function BookingDialog({
                 <button
                   type="button"
                   onClick={reset}
-                  className="h-11 rounded-full border border-line px-5 text-sm text-pine hover:border-brand"
+                  className="h-12 rounded-full border border-line px-6 text-sm font-medium text-pine transition-colors hover:border-brand hover:text-brand"
                 >
                   {t.anotherBooking}
                 </button>
               </div>
             </div>
           ) : (
-            <form onSubmit={confirm} className="space-y-4">
+            <form onSubmit={confirm} className="space-y-5">
               <label className="block">
-                <span className="mb-2 block text-sm text-ink-soft">{t.stepSpecialty}</span>
+                <span className="mb-2 block text-sm font-medium text-ink-soft">{t.stepSpecialty}</span>
                 <select
                   value={specialty}
                   onChange={(e) => {
@@ -255,7 +261,7 @@ function BookingDialog({
                   className="field"
                 >
                   <option value="">{t.chooseSpecialty}</option>
-                  {specialties.map((s) => (
+                  {departments.map((s) => (
                     <option key={s.id} value={s.id}>
                       {s.name[lang]}
                     </option>
@@ -264,26 +270,32 @@ function BookingDialog({
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-sm text-ink-soft">{t.stepDoctor}</span>
+                <span className="mb-2 block text-sm font-medium text-ink-soft">{t.stepDoctor}</span>
                 <select
-                  value={doctor}
+                  value={hasDoctors ? doctor : "on-duty"}
                   onChange={(e) => setDoctor(e.target.value)}
                   disabled={!specialty}
                   className="field disabled:opacity-50"
                 >
-                  <option value="">
-                    {specialty ? t.chooseDoctor : t.chooseSpecialtyFirst}
-                  </option>
-                  {doctorOptions.map((d) => (
-                    <option key={d.id} value={d.id}>
-                      {d.name[lang]} — {d.title[lang]}
-                    </option>
-                  ))}
+                  {hasDoctors ? (
+                    <>
+                      <option value="">
+                        {specialty ? t.chooseDoctor : t.chooseSpecialtyFirst}
+                      </option>
+                      {filteredDoctors.map((d) => (
+                        <option key={d.id} value={d.id}>
+                          {d.name[lang]} — {d.title[lang]}
+                        </option>
+                      ))}
+                    </>
+                  ) : (
+                    <option value="on-duty">{t.onDuty}</option>
+                  )}
                 </select>
               </label>
 
               <div>
-                <p className="mb-2 text-sm text-ink-soft">{t.date}</p>
+                <p className="mb-2 text-sm font-medium text-ink-soft">{t.date}</p>
                 <div className="flex gap-2 overflow-x-auto pb-1">
                   {days.map((d) => (
                     <button
@@ -292,11 +304,11 @@ function BookingDialog({
                       disabled={d.closed}
                       onClick={() => setDate(d.iso)}
                       className={cn(
-                        "min-w-[5.4rem] rounded-2xl border px-3 py-2.5 text-center text-xs transition-colors",
+                        "min-w-[5.4rem] rounded-2xl border px-3 py-2.5 text-center text-xs font-medium transition-all",
                         d.closed && "cursor-not-allowed opacity-40",
                         date === d.iso
-                          ? "border-brand bg-brand text-pine-deep"
-                          : "border-line bg-cream text-ink hover:border-brand/40",
+                          ? "border-brand bg-brand text-pine-deep shadow-[0_2px_8px_-2px_rgba(18,179,176,0.3)]"
+                          : "border-line bg-paper text-ink hover:border-brand/40",
                       )}
                     >
                       {d.label}
@@ -307,7 +319,7 @@ function BookingDialog({
               </div>
 
               <div>
-                <p className="mb-2 text-sm text-ink-soft">{t.time}</p>
+                <p className="mb-2 text-sm font-medium text-ink-soft">{t.time}</p>
                 <div className="grid grid-cols-4 gap-2 sm:grid-cols-7">
                   {times.map((slot) => (
                     <button
@@ -316,9 +328,9 @@ function BookingDialog({
                       disabled={!date}
                       onClick={() => setTime(slot)}
                       className={cn(
-                        "h-10 rounded-xl border text-sm transition-colors disabled:opacity-40",
+                        "h-10 rounded-xl border text-sm font-medium transition-all disabled:opacity-40",
                         time === slot
-                          ? "border-brand bg-brand text-pine-deep"
+                          ? "border-brand bg-brand text-pine-deep shadow-[0_2px_8px_-2px_rgba(18,179,176,0.3)]"
                           : "border-line text-ink hover:border-brand/40",
                       )}
                     >
@@ -330,7 +342,7 @@ function BookingDialog({
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block">
-                  <span className="mb-2 block text-sm text-ink-soft">{t.patientName}</span>
+                  <span className="mb-2 block text-sm font-medium text-ink-soft">{t.patientName}</span>
                   <input
                     type="text"
                     value={name}
@@ -342,7 +354,7 @@ function BookingDialog({
                   />
                 </label>
                 <label className="block">
-                  <span className="mb-2 block text-sm text-ink-soft">{t.patientPhone}</span>
+                  <span className="mb-2 block text-sm font-medium text-ink-soft">{t.patientPhone}</span>
                   <input
                     type="tel"
                     value={phone}
@@ -350,7 +362,7 @@ function BookingDialog({
                     placeholder={t.phonePlaceholder}
                     autoComplete="tel"
                     dir="ltr"
-                    className="field text-start"
+                    className={`field ${lang === "ar" ? "text-right" : "text-left"}`}
                     required
                   />
                 </label>
@@ -360,7 +372,7 @@ function BookingDialog({
                 <button
                   type="submit"
                   disabled={!canSubmit}
-                  className="h-12 rounded-full bg-brand text-sm font-medium text-pine-deep transition-colors hover:bg-brand-hover disabled:opacity-40"
+                  className="h-[3.25rem] rounded-full bg-brand text-sm font-medium text-pine-deep shadow-[0_6px_24px_-6px_rgba(18,179,176,0.4)] transition-all hover:bg-brand-hover hover:shadow-[0_8px_28px_-6px_rgba(18,179,176,0.5)] disabled:opacity-40 disabled:shadow-none"
                 >
                   {t.confirmAppointment}
                 </button>
@@ -368,7 +380,7 @@ function BookingDialog({
                   href={whatsappHref(t.waDefault)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 text-sm text-brand hover:text-brand-hover"
+                  className="inline-flex items-center justify-center gap-2 text-sm font-medium text-brand hover:text-brand-hover"
                 >
                   <WhatsAppIcon className="h-4 w-4 text-whatsapp" />
                   {t.orWhatsapp}

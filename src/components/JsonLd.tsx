@@ -36,12 +36,12 @@ export function JsonLd() {
       closes: "22:00",
     },
     medicalSpecialty: [
+      "GeneralPractice",
       "Dermatology",
       "Dentistry",
       "Gynecologic",
-      "Gastroenterologic",
+      "PlasticSurgery",
       "Otolaryngologic",
-      "Surgical",
     ],
     priceRange: "$$",
   };

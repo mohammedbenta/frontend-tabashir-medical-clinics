@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { BookingProvider } from "@/components/BookingModal";
 import { LanguageProvider } from "@/lib/i18n";
 import { SkipLink } from "@/components/SkipLink";
+import { Splash } from "@/components/Splash";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | تباشير الطبية",
   },
   description:
-    "مجمع تباشير الطبي في جدة: تخصصات متكاملة، أطباء متخصصون، وحجز موعد أوضح عبر الموقع أو واتساب. جلدية، أسنان، نساء وولادة والمزيد.",
+    "مجمع تباشير الطبي في جدة: ستة أقسام متخصصة، أطباء متخصصون، وحجز موعد أوضح عبر الموقع أو واتساب. جلدية، أسنان، نساء وولادة والمزيد.",
   keywords: [
     "عيادات تباشير",
     "مجمع طبي جدة",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     locale: "ar_SA",
     type: "website",
     siteName: site.name,
-    title: "تباشير الطبية | ٩ تخصصات طبية تحت سقف واحد في جدة",
+    title: "تباشير الطبية | رعايتك الطبية في مكان واحد",
     description: site.description,
     url: "/",
     images: [
@@ -77,7 +78,8 @@ export default function RootLayout({
       className={`${plex.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-cream font-sans text-ink">
-        <LanguageProvider>
+          <LanguageProvider>
+          <Splash />
           <SkipLink />
           <div className="grain" aria-hidden />
           <JsonLd />
