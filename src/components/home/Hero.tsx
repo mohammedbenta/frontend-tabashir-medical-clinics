@@ -13,35 +13,54 @@ const HERO_POSTER = "/images/hero-poster.jpg";
 const HERO_VIDEO = "/videos/hero.mp4";
 const HERO_VIDEO_SM = "/videos/hero-sm.mp4";
 
+function armHeroVideo(video: HTMLVideoElement) {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+  return video.play().catch(() => undefined);
+}
+
 function HeroBackground({ alt }: { alt: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [src, setSrc] = useState<string | null>(null);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    if (connection?.saveData) return;
-    setSrc(window.matchMedia("(max-width: 767px)").matches ? HERO_VIDEO_SM : HERO_VIDEO);
-  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !src) return;
+    if (!video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.removeAttribute("src");
+      video.load();
+      return;
+    }
 
-    const play = () => {
-      setReady(true);
-      video.play().catch(() => {});
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      video.src = HERO_VIDEO;
+    }
+
+    const tryPlay = () => {
+      void armHeroVideo(video);
     };
 
-    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) play();
-    video.addEventListener("canplay", play);
-    video.addEventListener("loadeddata", play);
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
+    const onVisible = () => {
+      if (!document.hidden) tryPlay();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("touchstart", tryPlay, { passive: true });
+    window.addEventListener("click", tryPlay);
+
     return () => {
-      video.removeEventListener("canplay", play);
-      video.removeEventListener("loadeddata", play);
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("touchstart", tryPlay);
+      window.removeEventListener("click", tryPlay);
     };
-  }, [src]);
+  }, []);
 
   return (
     <>
@@ -53,24 +72,19 @@ function HeroBackground({ alt }: { alt: string }) {
         sizes="100vw"
         className="hero-media object-cover object-center"
       />
-      {src ? (
-        <video
-          ref={videoRef}
-          src={src}
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster={HERO_POSTER}
-          disablePictureInPicture
-          disableRemotePlayback
-          aria-hidden
-          className={cn(
-            "hero-media absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-300",
-            ready ? "opacity-100" : "opacity-0",
-          )}
-        />
-      ) : null}
+      <video
+        ref={videoRef}
+        src={HERO_VIDEO_SM}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster={HERO_POSTER}
+        disablePictureInPicture
+        aria-hidden
+        className="hero-media absolute inset-0 h-full w-full object-cover object-center"
+      />
     </>
   );
 }
