@@ -27,9 +27,17 @@ const icons = {
   ),
   women: (
     <>
-      <circle cx="12" cy="8" r="3.2" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="9.2" cy="5.6" r="2.15" stroke="currentColor" strokeWidth="1.6" />
       <path
-        d="M12 11.2v8.3M9 16.2h6"
+        d="M9.2 7.8v6.8M6.4 11.2h5.6M6.8 20.2L9.2 14.6l2.4 5.6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="16.4" cy="10.6" r="1.65" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M16.4 12.4v4.6M14.8 14.8h3.2"
         stroke="currentColor"
         strokeWidth="1.6"
         strokeLinecap="round"
@@ -37,12 +45,20 @@ const icons = {
     </>
   ),
   "plastic-surgery": (
-    <path
-      d="M8 7.5c2-2.2 6-2.2 8 0 1.4 1.5 1.6 3.6.4 5.3L12 19 7.6 12.8C6.4 11.1 6.6 9 8 7.5z"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinejoin="round"
-    />
+    <>
+      <path
+        d="M14.8 3.8l5.4 5.4-9.6 9.6H5.2v-5.4L14.8 3.8z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.2 6.2l4.6 4.6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </>
   ),
   ent: (
     <path

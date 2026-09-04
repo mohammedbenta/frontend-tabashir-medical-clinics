@@ -3,7 +3,7 @@ export const site = {
   nameEn: "Tabashir Medical Clinics",
   tagline: "رعايتك الطبية... في مكان واحد",
   description:
-    "مجمع طبي خاص في جدة يقدّم ستة أقسام متخصصة، وأطباء متخصصين، وتجربة حجز أوضح من أول خطوة.",
+    "مجمع طبي خاص في جدة يقدّم خمسة أقسام متخصصة، وأطباء متخصصين، وتجربة حجز أوضح من أول خطوة.",
   url: "https://tabashirclinics.com",
   phoneDisplay: "053 909 0509",
   phoneTel: "+966539090509",

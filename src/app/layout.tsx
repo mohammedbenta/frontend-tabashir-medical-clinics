@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | تباشير الطبية",
   },
   description:
-    "مجمع تباشير الطبي في جدة: ستة أقسام متخصصة، أطباء متخصصون، وحجز موعد أوضح عبر الموقع أو واتساب. جلدية، أسنان، نساء وولادة والمزيد.",
+    "مجمع تباشير الطبي في جدة: خمسة أقسام متخصصة، أطباء متخصصون، وحجز موعد أوضح عبر الموقع أو واتساب. جلدية، أسنان، نساء وولادة والمزيد.",
   keywords: [
     "عيادات تباشير",
     "مجمع طبي جدة",
@@ -77,9 +77,26 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${plex.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preload" href="/brand/logo.png" as="image" />
+        <link
+          rel="preload"
+          href="/videos/hero-sm.mp4"
+          as="video"
+          type="video/mp4"
+          media="(max-width: 767px)"
+        />
+        <link
+          rel="preload"
+          href="/videos/hero.mp4"
+          as="video"
+          type="video/mp4"
+          media="(min-width: 768px)"
+        />
+      </head>
       <body className="min-h-full bg-cream font-sans text-ink">
-          <LanguageProvider>
           <Splash />
+          <LanguageProvider>
           <SkipLink />
           <div className="grain" aria-hidden />
           <JsonLd />

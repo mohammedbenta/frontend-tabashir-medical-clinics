@@ -46,7 +46,7 @@ body {
   .cta-pulse::after,
   .phone-ring,
   .splash,
-  .splash-logo {
+  .splash-mark {
     animation: none !important;
   }
 
@@ -196,6 +196,11 @@ body {
 }
 
 
+.hero-media {
+  transform: scale(1.05);
+  backface-visibility: hidden;
+}
+
 .img-reveal {
   overflow: hidden;
 }
@@ -331,7 +336,13 @@ html[dir="ltr"] select.field {
   justify-content: center;
   background: var(--color-pine-deep);
   overflow: hidden;
-  animation: splash-auto-hide 1s ease forwards;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.splash-hide {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .splash-mark {
@@ -340,45 +351,10 @@ html[dir="ltr"] select.field {
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: scale(0.6);
+  transform-origin: center center;
 }
 
 .splash-logo {
-  animation: splash-logo-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.splash-out {
-  animation: splash-out 0.35s ease forwards;
-  pointer-events: none;
-}
-
-@keyframes splash-logo-pop {
-  from {
-    opacity: 0;
-    transform: scale(0.82);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes splash-out {
-  to {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-}
-
-@keyframes splash-auto-hide {
-  0%,
-  65% {
-    opacity: 1;
-    visibility: visible;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
+  display: block;
 }

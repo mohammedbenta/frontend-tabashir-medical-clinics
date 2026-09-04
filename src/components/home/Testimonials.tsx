@@ -5,12 +5,50 @@ import { Media } from "@/components/Media";
 import { testimonials } from "@/data/content";
 import { useI18n } from "@/lib/i18n";
 
+const GOOGLE_STAR = "#fbbc04";
+const GOOGLE_STAR_EMPTY = "#d0d0d0";
+
+function StarIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" aria-hidden>
+      <path
+        d="M12 2.6l2.7 6.1 6.6.7-5 4.6 1.4 6.5L12 17.8 6.3 20.5 7.7 14 2.7 9.4l6.6-.7L12 2.6z"
+        fill={filled ? GOOGLE_STAR : GOOGLE_STAR_EMPTY}
+      />
+    </svg>
+  );
+}
+
 function Stars({ count }: { count: number }) {
   return (
-    <p className="text-sm tracking-wide text-bronze" aria-hidden>
-      {"★".repeat(count)}
-      {"☆".repeat(5 - count)}
+    <p className="mt-0.5 flex items-center gap-0.5" aria-hidden>
+      {Array.from({ length: 5 }, (_, i) => (
+        <StarIcon key={i} filled={i < count} />
+      ))}
     </p>
+  );
+}
+
+function GoogleLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <path
+        fill="#4285F4"
+        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+      />
+    </svg>
   );
 }
 
@@ -30,49 +68,24 @@ function VerifiedIcon() {
   );
 }
 
-const PREVIEW = 118;
-
 function ReviewCard({
   item,
   lang,
   t,
-  onToggle,
 }: {
   item: (typeof testimonials)[number];
   lang: "ar" | "en";
-  t: { verified: string; readMore: string; readLess: string };
-  onToggle: (open: boolean) => void;
+  t: { verified: string };
 }) {
-  const [open, setOpen] = useState(false);
-  const text = item.text[lang];
-  const long = text.length > PREVIEW || text.includes("\n");
-  const shown = open || !long ? text : `${text.slice(0, PREVIEW).trim()}…`;
-
   return (
     <blockquote
       data-review-card
-      className={`premium-card flex w-[min(88vw,22rem)] shrink-0 snap-center flex-col p-7 ${
-        open ? "min-h-[22rem]" : "h-[22rem]"
-      }`}
+      className="premium-card flex min-h-[22rem] w-[min(88vw,22rem)] shrink-0 snap-center flex-col p-7 lg:w-[calc((100%-2.5rem)/3)] lg:snap-start"
     >
       <div className="min-h-0 flex-1">
-        <Stars count={item.stars} />
-        <p className="mt-4 whitespace-pre-line text-[0.95rem] leading-7 text-ink">
-          &ldquo;{shown}&rdquo;
+        <p className="whitespace-pre-line text-[0.95rem] leading-7 text-ink">
+          &ldquo;{item.text[lang]}&rdquo;
         </p>
-        {long && (
-          <button
-            type="button"
-            onClick={() => {
-              const next = !open;
-              setOpen(next);
-              onToggle(next);
-            }}
-            className="mt-2 text-sm font-medium text-brand hover:text-brand-hover"
-          >
-            {open ? t.readLess : t.readMore}
-          </button>
-        )}
       </div>
       <footer className="mt-5 flex items-center gap-3 border-t border-line/60 pt-5">
         <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-cream-deep text-sm font-medium text-white ring-2 ring-brand/20">
@@ -99,7 +112,7 @@ function ReviewCard({
             <VerifiedIcon />
             <span className="sr-only">{t.verified}</span>
           </cite>
-          <p className="mt-0.5 truncate text-xs text-muted">{item.specialty[lang]}</p>
+          <Stars count={item.stars} />
         </div>
       </footer>
     </blockquote>
@@ -170,23 +183,25 @@ export function Testimonials() {
             {t.reviewsTitle}
           </h2>
           <p className="mt-5 text-[1.02rem] leading-8 text-ink-soft">{t.reviewsLead}</p>
+          <div className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-line bg-paper px-4 py-2">
+            <GoogleLogo className="h-5 w-5" />
+            <span className="sr-only">{t.googleSource}</span>
+            <span className="flex items-center gap-0.5" aria-hidden>
+              {Array.from({ length: 5 }, (_, i) => (
+                <StarIcon key={i} filled />
+              ))}
+            </span>
+            <span className="text-[1.05rem] font-medium text-pine">{t.googleRating}</span>
+          </div>
         </div>
 
         <div
           ref={scrollerRef}
           dir={lang === "ar" ? "rtl" : "ltr"}
-          className="mt-14 flex items-stretch gap-5 overflow-x-auto pb-4 [scrollbar-width:thin] snap-x snap-mandatory"
+          className="mt-14 flex items-stretch gap-5 overflow-x-auto pb-4 [scrollbar-width:thin] snap-x snap-mandatory lg:[scrollbar-width:none]"
         >
           {testimonials.map((item) => (
-            <ReviewCard
-              key={item.id}
-              item={item}
-              lang={lang}
-              t={t}
-              onToggle={(open) => {
-                pausedRef.current = open;
-              }}
-            />
+            <ReviewCard key={item.id} item={item} lang={lang} t={t} />
           ))}
         </div>
 

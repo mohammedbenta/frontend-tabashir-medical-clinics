@@ -5,7 +5,7 @@ import { Media } from "@/components/Media";
 import { Reveal } from "@/components/Reveal";
 import { WhatsAppIcon } from "@/components/Logo";
 import { departments } from "@/data/content";
-import { whatsappHref } from "@/lib/site";
+import { mapsEmbedSrc, mapsHref, site, whatsappHref } from "@/lib/site";
 import { useBooking } from "@/components/BookingModal";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
@@ -13,7 +13,13 @@ import { cn } from "@/lib/cn";
 const fieldClass =
   "h-12 w-full rounded-2xl border border-white/15 bg-white px-4 text-[0.95rem] text-ink outline-none transition-[border-color,box-shadow] focus:border-brand focus:shadow-[0_0_0_3px_rgba(18,179,176,0.18)]";
 
-export function AppointmentCTA({ specialty }: { specialty?: string }) {
+export function AppointmentCTA({
+  specialty,
+  doctorName,
+}: {
+  specialty?: string;
+  doctorName?: string;
+}) {
   const { lang, t } = useI18n();
   const { preset } = useBooking();
   const [name, setName] = useState("");
@@ -41,6 +47,7 @@ export function AppointmentCTA({ specialty }: { specialty?: string }) {
   }
 
   return (
+    <>
     <section id="booking" className="relative overflow-hidden px-5 py-24 md:px-8 md:py-32">
       <Media
         src="/images/booking-lounge.jpg"
@@ -59,9 +66,11 @@ export function AppointmentCTA({ specialty }: { specialty?: string }) {
           >
             <p className="eyebrow text-brand">{t.ctaEyebrow}</p>
             <h2 className="mt-3 text-[1.65rem] font-light leading-snug tracking-tight text-paper md:text-[1.9rem]">
-              {t.ctaTitle}
+              {doctorName ? t.ctaTitleDoctor(doctorName) : t.ctaTitle}
             </h2>
-            <p className="mt-3 text-[0.98rem] leading-7 text-paper/70">{t.ctaLead}</p>
+            <p className="mt-3 text-[0.98rem] leading-7 text-paper/70">
+              {doctorName ? t.ctaLeadDoctor : t.ctaLead}
+            </p>
 
             {sent ? (
               <div className="mt-8">
@@ -80,9 +89,10 @@ export function AppointmentCTA({ specialty }: { specialty?: string }) {
                 <p className="mt-2 leading-7 text-paper/70">{t.leadSentLead}</p>
                 <p className="mt-3 text-sm text-paper/50">
                   {name} · {phone} · {selected?.name[lang]}
+                  {doctorName ? ` · ${doctorName}` : ""}
                 </p>
                 <a
-                  href={whatsappHref(t.waLead(name, phone, selected?.name[lang] ?? ""))}
+                  href={whatsappHref(t.waLead(name, phone, selected?.name[lang] ?? "", doctorName))}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-sm font-medium text-white"
@@ -168,6 +178,51 @@ export function AppointmentCTA({ specialty }: { specialty?: string }) {
           </div>
         </div>
       </Reveal>
+    </section>
+    {doctorName ? null : <LocationMap />}
+    </>
+  );
+}
+
+function LocationMap() {
+  const { lang, t } = useI18n();
+  const addressPrimary = lang === "ar" ? site.address : site.addressEn;
+  const addressSecondary = lang === "ar" ? site.addressEn : site.address;
+  const heading = lang === "ar" ? site.legalName : site.nameEn;
+  const subheading = lang === "ar" ? site.nameEn : site.legalName;
+
+  return (
+    <section className="section-glow bg-paper text-ink">
+      <div className="mx-auto grid max-w-[1400px] items-stretch gap-10 px-5 py-14 md:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:py-16">
+        <div className="flex flex-col justify-center">
+          <p className="eyebrow">{t.locationEyebrow}</p>
+          <h2 className="mt-4 text-[1.6rem] font-medium leading-snug tracking-tight text-pine md:text-[1.85rem]">
+            {heading}
+          </h2>
+          <p className="mt-2 text-lg font-medium text-brand">{subheading}</p>
+          <address className="mt-6 max-w-md text-[0.98rem] not-italic leading-8 text-ink-soft">
+            {addressPrimary}
+            <span className="mt-1 block text-muted">{addressSecondary}</span>
+          </address>
+          <a
+            href={mapsHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary mt-7 h-12 w-fit px-6 text-sm"
+          >
+            {t.openMaps}
+          </a>
+        </div>
+        <div className="min-h-[260px] overflow-hidden rounded-[1.5rem] border border-line shadow-[0_8px_32px_-12px_rgba(6,30,29,0.1)]">
+          <iframe
+            title={`${t.locationEyebrow} — ${heading}`}
+            src={mapsEmbedSrc}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-[260px] w-full min-h-[260px] border-0 lg:h-full"
+          />
+        </div>
+      </div>
     </section>
   );
 }

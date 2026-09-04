@@ -40,7 +40,7 @@ export default function DoctorsPage() {
 
       <section className="px-5 py-20 md:px-8 md:py-28">
         <div className="mx-auto max-w-[1400px]">
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label={t.allDepartments}>
+          <div className="flex flex-wrap gap-2" role="tablist" aria-label={t.allDoctors}>
             <button
               type="button"
               role="tab"
@@ -53,7 +53,7 @@ export default function DoctorsPage() {
                   : "border border-line bg-paper text-pine hover:border-brand hover:text-brand",
               )}
             >
-              {t.allDepartments}
+              {t.allDoctors}
             </button>
             {departments.map((s) => (
               <button

@@ -22,7 +22,7 @@ export const departments: Department[] = [
       en: "Comprehensive medical care for you and your family.",
     },
     href: "/general-medicine",
-    image: "/images/specialties/general.jpg",
+    image: "/images/specialties/general-consult.jpg",
     introTitle: {
       ar: "نقطة البداية الصحيحة لصحتك",
       en: "The right first step for your health",
@@ -78,7 +78,7 @@ export const departments: Department[] = [
       en: "Skin health and aesthetics under specialist supervision.",
     },
     href: "/dermatology",
-    image: "/images/specialties/dermatology.jpg",
+    image: "/images/specialties/dermatology-care.webp",
     introTitle: {
       ar: "عناية طبية ببشرتك… بخطوات واضحة",
       en: "Medical care for your skin, in clear steps",
@@ -134,7 +134,7 @@ export const departments: Department[] = [
       en: "Complete care for healthier teeth and a more confident smile.",
     },
     href: "/dental",
-    image: "/images/specialties/dental.jpg",
+    image: "/images/specialties/dental-care.jpg",
     introTitle: {
       ar: "ابتسامتك تبدأ من خطة واضحة",
       en: "Your smile starts with a clear plan",
@@ -190,7 +190,7 @@ export const departments: Department[] = [
       en: "Specialized care for women at every stage.",
     },
     href: "/women",
-    image: "/images/specialties/obgyn.jpg",
+    image: "/images/specialties/women-care.png",
     introTitle: {
       ar: "متابعة دقيقة… بوقت كافٍ للأسئلة",
       en: "Attentive follow-up, with time enough for questions",
@@ -199,7 +199,7 @@ export const departments: Department[] = [
       ar: "من الفحص الدوري إلى رحلة الحمل وما بعدها: نضع راحة المريضة ووضوح الخطة في المقدمة، داخل بيئة هادئة وخصوصية أعلى.",
       en: "From routine exams to pregnancy and after: we put the patient’s comfort and a clear plan first, in a calmer setting with greater privacy.",
     },
-    whyImage: "/images/specialties/obgyn.jpg",
+    whyImage: "/images/specialties/women-care.png",
     services: [
       { ar: "فحوصات دورية لصحة المرأة", en: "Routine women’s health exams" },
       { ar: "متابعة الحمل", en: "Pregnancy follow-up" },
@@ -246,7 +246,7 @@ export const departments: Department[] = [
       en: "Aesthetic and surgical solutions to a high standard.",
     },
     href: "/plastic-surgery",
-    image: "/images/specialties/surgery.jpg",
+    image: "/images/specialties/plastic-surgery.jpg",
     introTitle: {
       ar: "قرار جراحي يُشرح بهدوء قبل أي خطوة",
       en: "A surgical decision explained calmly before any step",
@@ -294,68 +294,16 @@ export const departments: Department[] = [
       },
     ],
   },
-  {
-    id: "ent",
-    name: { ar: "أنف وأذن وحنجرة", en: "ENT" },
-    description: {
-      ar: "تشخيص وعلاج متكامل لمشكلات الأنف والأذن والحنجرة.",
-      en: "Complete diagnosis and treatment for ear, nose, and throat conditions.",
-    },
-    href: "/ent",
-    image: "/images/specialties/ent.jpg",
-    introTitle: {
-      ar: "تشخيص أوضح… لعلاج يرتاح له تنفسك وسمعك",
-      en: "Clearer diagnosis, for care that eases breathing and hearing",
-    },
-    intro: {
-      ar: "من التهابات الجيوب وصعوبة التنفس إلى مشكلات السمع والحلق: نبدأ بتشخيص مرتّب، ثم خطة علاج تُشرح لك قبل التنفيذ.",
-      en: "From sinus inflammation and breathing difficulty to hearing and throat issues: we start with an ordered diagnosis, then a treatment plan explained before it begins.",
-    },
-    whyImage: "/images/specialties/ent.jpg",
-    services: [
-      { ar: "تشخيص وعلاج الجيوب الأنفية", en: "Sinus diagnosis and treatment" },
-      { ar: "مشكلات السمع والأذن", en: "Hearing and ear conditions" },
-      { ar: "التهابات الحلق والحنجرة", en: "Throat and larynx infections" },
-      { ar: "تقييم انحراف الوتيرة والتنفس", en: "Septal deviation and breathing assessment" },
-      { ar: "متابعة الشخير وصعوبة النوم", en: "Snoring and sleep-disordered breathing" },
-    ],
-    faqs: [
-      {
-        q: { ar: "متى أزور قسم الأنف والأذن والحنجرة؟", en: "When should I visit ENT?" },
-        a: {
-          ar: "عند تكرار التهاب الجيوب، أو صعوبة التنفس، أو ضعف السمع، أو التهاب الحلق المستمر.",
-          en: "For recurring sinus inflammation, breathing difficulty, hearing loss, or a persistent sore throat.",
-        },
-      },
-      {
-        q: { ar: "هل كل الحالات تحتاج إجراء؟", en: "Does every case need a procedure?" },
-        a: {
-          ar: "لا. كثير من الحالات تُعالج دوائياً أو بمتابعة. الإجراء يُطرح فقط إن كان هو الخيار الأنسب.",
-          en: "No. Many cases are treated medically or with follow-up. A procedure is offered only if it is the most suitable option.",
-        },
-      },
-      {
-        q: { ar: "هل يتوفر التشخيص في نفس الزيارة؟", en: "Is diagnosis available in the same visit?" },
-        a: {
-          ar: "غالباً نبدأ بالتقييم في الزيارة الأولى. إن احتجت فحصاً إضافياً نوضّح الخطوة التالية فوراً.",
-          en: "We usually begin assessment on the first visit. If a further test is needed, we explain the next step immediately.",
-        },
-      },
-      {
-        q: { ar: "كيف أحجز في الأنف والأذن والحنجرة؟", en: "How do I book ENT?" },
-        a: {
-          ar: "اختر القسم من الحجز وسنؤكد الموعد مع الطبيب المتاح في هذا التخصص.",
-          en: "Choose the department when booking, and we will confirm the appointment with the available specialist.",
-        },
-      },
-    ],
-  },
 ];
 
 export const departmentIds = departments.map((d) => d.id);
 
 export function getDepartment(id: string) {
   return departments.find((d) => d.id === id);
+}
+
+export function getDoctor(id: string) {
+  return doctors.find((d) => d.id === id);
 }
 
 export type Doctor = {
@@ -365,6 +313,7 @@ export type Doctor = {
   specialty: Text;
   title: Text;
   experience?: Text;
+  years?: number;
   credibility: Text;
   services?: Text[];
   image?: string;
@@ -454,7 +403,22 @@ export const doctors: Doctor[] = [
     ],
     initials: "مص",
     featured: true,
+    years: 30,
     image: "/images/doctors/mustafa.jpg",
+  },
+  {
+    id: "ghada",
+    name: { ar: "د. غادة عبدون", en: "Dr. Ghada Abdoun" },
+    specialtyId: "dermatology",
+    specialty: { ar: "جلدية وتجميل", en: "Dermatology & aesthetics" },
+    title: { ar: "أخصائية الجلدية والتجميل والليزر", en: "Dermatology, aesthetics & laser specialist" },
+    credibility: {
+      ar: "تضع خطة واضحة لبشرتك — علاج طبي أو إجراء تجميلي مثل الفيلر والليزر.",
+      en: "She sets a clear plan for your skin — medical treatment or an aesthetic procedure such as filler or laser.",
+    },
+    initials: "غ",
+    featured: true,
+    image: "/images/doctors/ghada.jpg",
   },
   {
     id: "salim",
@@ -472,6 +436,7 @@ export const doctors: Doctor[] = [
     },
     initials: "سل",
     featured: true,
+    years: 40,
   },
   {
     id: "badr",
@@ -484,19 +449,6 @@ export const doctors: Doctor[] = [
       en: "Clear follow-up for diabetes and gland disorders, with time enough for questions.",
     },
     initials: "ب",
-    featured: true,
-  },
-  {
-    id: "ghada",
-    name: { ar: "د. غادة عبدون", en: "Dr. Ghada Abdoon" },
-    specialtyId: "dermatology",
-    specialty: { ar: "جلدية وتجميل", en: "Dermatology & aesthetics" },
-    title: { ar: "أخصائية الجلدية والتجميل والليزر", en: "Dermatology, aesthetics & laser specialist" },
-    credibility: {
-      ar: "تضع خطة واضحة لبشرتك — علاج طبي أو إجراء تجميلي مثل الفيلر والليزر.",
-      en: "She sets a clear plan for your skin — medical treatment or an aesthetic procedure such as filler or laser.",
-    },
-    initials: "غ",
     featured: true,
   },
   {
@@ -524,6 +476,7 @@ export const doctors: Doctor[] = [
     },
     initials: "س",
     featured: true,
+    years: 12,
   },
   {
     id: "omar-ahmed",
@@ -632,7 +585,7 @@ export const testimonials = [
     name: { ar: "هاتون نجاتي", en: "Haton Najati" },
     initial: "ه",
     avatar: "#8e24aa",
-    specialty: { ar: "د. غادة عبدون · فيلر", en: "Dr. Ghada Abdoon · Filler" },
+    specialty: { ar: "د. غادة عبدون · فيلر", en: "Dr. Ghada Abdoun · Filler" },
     stars: 5,
     text: {
       ar: "سويت فيلر عند دكتوره غاده يجننن ولا غلطه ويدها خفيفه 💗",
@@ -664,7 +617,7 @@ export const faqs = [
     },
   },
   {
-    q: { ar: "هل الأقسام الستة في مجمع واحد؟", en: "Are the six departments in one complex?" },
+    q: { ar: "هل الأقسام في مجمع واحد؟", en: "Are the departments in one complex?" },
     a: {
       ar: "نعم. تباشير وجهة طبية واحدة متعددة التخصصات في أبراج ليليان، طريق الأمير سلطان، حي السلامة بجدة.",
       en: "Yes. Tabashir is one multi-specialty medical destination at Lilian Towers, Prince Sultan Road, As Salamah, Jeddah.",
@@ -692,7 +645,7 @@ export const authorityStats = [
     label: { ar: "سنة خبرة تراكمية", en: "Years of combined experience" },
   },
   {
-    value: { ar: "٦", en: "6" },
+    value: { ar: "٥", en: "5" },
     label: { ar: "أقسام طبية في مجمع واحد", en: "Medical departments in one complex" },
   },
   {

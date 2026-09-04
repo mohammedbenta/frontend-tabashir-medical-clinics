@@ -1,12 +1,79 @@
 "use client";
 
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
+import { Media } from "@/components/Media";
 import { departments, doctors } from "@/data/content";
 import { BookButton } from "@/components/BookButton";
 import { DepartmentIcon } from "@/components/DepartmentIcon";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
-import type { ReactNode } from "react";
+
+const HERO_POSTER = "/images/hero-poster.jpg";
+const HERO_VIDEO = "/videos/hero.mp4";
+const HERO_VIDEO_SM = "/videos/hero-sm.mp4";
+
+function HeroBackground({ alt }: { alt: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [src, setSrc] = useState<string | null>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (connection?.saveData) return;
+    setSrc(window.matchMedia("(max-width: 767px)").matches ? HERO_VIDEO_SM : HERO_VIDEO);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !src) return;
+
+    const play = () => {
+      setReady(true);
+      video.play().catch(() => {});
+    };
+
+    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) play();
+    video.addEventListener("canplay", play);
+    video.addEventListener("loadeddata", play);
+    return () => {
+      video.removeEventListener("canplay", play);
+      video.removeEventListener("loadeddata", play);
+    };
+  }, [src]);
+
+  return (
+    <>
+      <Media
+        src={HERO_POSTER}
+        alt={alt}
+        fill
+        preload
+        sizes="100vw"
+        className="hero-media object-cover object-center"
+      />
+      {src ? (
+        <video
+          ref={videoRef}
+          src={src}
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={HERO_POSTER}
+          disablePictureInPicture
+          disableRemotePlayback
+          aria-hidden
+          className={cn(
+            "hero-media absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-300",
+            ready ? "opacity-100" : "opacity-0",
+          )}
+        />
+      ) : null}
+    </>
+  );
+}
 
 function HeroTrust({
   children,
@@ -44,16 +111,7 @@ export function Hero() {
 
   return (
     <section id="home" className="relative min-h-dvh overflow-hidden bg-pine-deep">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full scale-105 object-cover object-center"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-        <img src="/images/hero-office.jpg" alt={t.heroAlt} className="h-full w-full object-cover" />
-      </video>
+      <HeroBackground alt={t.heroAlt} />
       <div
         className={cn(
           "absolute inset-0",

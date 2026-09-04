@@ -79,7 +79,7 @@ export function Doctors() {
               {t.doctorsTitle}
             </h2>
             <p className="mt-5 text-[1.02rem] leading-8 text-ink-soft">{t.doctorsLead}</p>
-            <div className="mt-6 flex flex-wrap justify-center gap-2" role="tablist" aria-label={t.allDepartments}>
+            <div className="mt-6 flex flex-wrap justify-center gap-2" role="tablist" aria-label={t.allDoctors}>
               <button
                 type="button"
                 role="tab"
@@ -92,7 +92,7 @@ export function Doctors() {
                     : "border border-line bg-paper text-pine hover:border-brand hover:text-brand",
                 )}
               >
-                {t.allDepartments}
+                {t.allDoctors}
               </button>
               {departments.map((s) => (
                 <button

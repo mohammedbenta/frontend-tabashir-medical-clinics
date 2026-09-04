@@ -31,6 +31,22 @@ const ui = {
     discover: "اكتشف القسم",
     exploreDepartments: "اكتشف أقسامنا",
     viewAllDoctors: "عرض جميع الأطباء",
+    backToDoctors: "العودة للأطباء",
+    aboutDoctor: "عن الطبيب",
+    aboutDoctorOf: (name: string) => `نبذة عن ${name}`,
+    seesAt: "يستقبل في",
+    otherDoctors: "أطباء آخرون",
+    departmentStat: "القسم",
+    yearsExperience: "سنة خبرة طبية",
+    servicesOffered: "خدمات يقدمها",
+    doctorCity: "جدة",
+    doctorDistrict: "السلامة",
+    doctorFaqWhereQ: (name: string) => `أين يستقبل ${name} المرضى؟`,
+    doctorFaqWhereA: "في مجمع عيادات تباشير الطبية، أبراج ليليان، طريق الأمير سلطان، السلامة، جدة.",
+    doctorFaqBookQ: "كيف أحجز استشارة؟",
+    doctorFaqBookA: "عبر نموذج الحجز في هذه الصفحة أو واتساب. الاستشارة لتقييم حالتك — القرار يبقى لك.",
+    inquireWa: "استفسر عبر واتساب",
+    bookOnPage: "احجز من هذه الصفحة",
     navHome: "الرئيسية",
     navDepartments: "الأقسام الطبية",
     navDoctors: "الأطباء",
@@ -63,7 +79,7 @@ const ui = {
     doctorsTitle: "تعرّف على فريقنا الطبي",
     doctorsLead:
       "ضع رعايتك بين أيدي أطباء متخصصين يفهمون احتياجك، ويشرحون الخطة قبل أي إجراء.",
-    allDepartments: "كل الأقسام",
+    allDoctors: "كل الأطباء",
     doctorsPageLead: "نخبة من الأطباء والمتخصصين في أقسام تباشير الطبية.",
     noDoctors: "فريق هذا القسم يُؤكد عند تأكيد الموعد.",
     noDoctorsLead: "احجز استشارتك وسنرتّب الطبيب المناسب لحالتك.",
@@ -73,7 +89,7 @@ const ui = {
     deptCtaTitle: "جاهزون لاستقبالك في هذا القسم",
     deptCtaLead: "اختر الوقت المناسب واحجز موعدك مع أحد المتخصصين.",
     aboutPageTitle: "من نحن",
-    aboutPageLead: "تباشير مجمع طبي خاص في جدة: ستة أقسام متخصصة، وملف واحد، وتجربة أوضح من أول زيارة.",
+    aboutPageLead: "تباشير مجمع طبي خاص في جدة: خمسة أقسام متخصصة، وملف واحد، وتجربة أوضح من أول زيارة.",
     featuredServices: "أبرز الخدمات",
     dermEyebrow: "الجلدية والتجميل",
     dermTitle: "عناية متخصصة ببشرتك وشعرك",
@@ -108,19 +124,22 @@ const ui = {
     aboutEyebrow: "عن العيادة",
     aboutTitle: "خبرة طبية تثق بها",
     aboutLead:
-      "تباشير مجمع طبي خاص في جدة، على طريق الأمير سلطان في حي السلامة. ستة أقسام متخصصة تحت سقف واحد، نضع الوقاية والتوضيح قبل الاستعجال في الإجراء.",
+      "تباشير مجمع طبي خاص في جدة، على طريق الأمير سلطان في حي السلامة. خمسة أقسام متخصصة تحت سقف واحد، نضع الوقاية والتوضيح قبل الاستعجال في الإجراء.",
     aboutAlt: "مدخل عيادات تباشير",
     faqEyebrow: "أسئلة شائعة",
     faqTitle: "إجابات مختصرة قبل الحجز",
     faqLead: "إن لم تجد سؤالك، راسلنا عبر واتساب وسنوجّهك للتخصص المناسب.",
     ctaEyebrow: "الحجز",
     ctaTitle: "خطوتك الأولى نحو رعاية أفضل",
+    ctaTitleDoctor: (name: string) => `احجز موعدك مع ${name}`,
     ctaLead: "املأ النموذج، وسنتواصل معك قريباً لتأكيد الموعد مع الطبيب المناسب.",
+    ctaLeadDoctor: "املأ النموذج، وسنتواصل معك قريباً لتأكيد الموعد.",
     ctaAlt: "استشارة طبية داخل بيئة عيادية حديثة",
     ctaWhatsapp: "تواصل عبر واتساب",
     locationEyebrow: "موقع العيادة",
     openMaps: "افتح الموقع في خرائط جوجل",
-    footerBlurb: "مجمع طبي خاص في جدة. ستة أقسام متخصصة، وملف واحد، وتجربة حجز أوضح من أول خطوة.",
+    footerBlurb:
+      "تباشير مجمع طبي خاص في جدة، على طريق الأمير سلطان في حي السلامة. خمسة أقسام\nمتخصصة تحت سقف واحد، نضع الوقاية والتوضيح قبل الاستعجال في الإجراء.",
     specialtiesTitle: "الأقسام الطبية",
     linksTitle: "روابط مهمة",
     faqLink: "الأسئلة الشائعة",
@@ -191,12 +210,15 @@ const ui = {
     leadName: "الاسم الكامل",
     leadPhone: "رقم الجوال",
     leadDept: "القسم",
+    leadDoctor: "الطبيب",
     leadSubmit: "أرسل الطلب",
     leadSent: "تم إرسال طلبك",
     leadSentLead: "سنعاود التواصل معك قريباً. يمكنك أيضاً تأكيد الطلب عبر واتساب.",
     leadImageAlt: "منطقة الانتظار في عيادات تباشير",
-    waLead: (name: string, phone: string, dept: string) =>
-      `مرحباً، أرغب بالحجز. الاسم: ${name} — الجوال: ${phone} — القسم: ${dept}`,
+    waLead: (name: string, phone: string, dept: string, doctor?: string) =>
+      doctor
+        ? `مرحباً، أرغب بالحجز. الاسم: ${name} — الجوال: ${phone} — القسم: ${dept} — الطبيب: ${doctor}`
+        : `مرحباً، أرغب بالحجز. الاسم: ${name} — الجوال: ${phone} — القسم: ${dept}`,
   },
   en: {
     skip: "Skip to booking",
@@ -216,6 +238,22 @@ const ui = {
     discover: "Explore department",
     exploreDepartments: "Discover our departments",
     viewAllDoctors: "View all doctors",
+    backToDoctors: "Back to doctors",
+    aboutDoctor: "About the doctor",
+    aboutDoctorOf: (name: string) => `About ${name}`,
+    seesAt: "Sees patients at",
+    otherDoctors: "Other doctors",
+    departmentStat: "Department",
+    yearsExperience: "years of medical experience",
+    servicesOffered: "services offered",
+    doctorCity: "Jeddah",
+    doctorDistrict: "As Salamah",
+    doctorFaqWhereQ: (name: string) => `Where does ${name} see patients?`,
+    doctorFaqWhereA: "At Tabashir Medical Clinics, Lilian Towers, Prince Sultan Road, As Salamah, Jeddah.",
+    doctorFaqBookQ: "How do I book a consultation?",
+    doctorFaqBookA: "Via the booking form on this page or WhatsApp. The consultation is to assess your case — the decision stays yours.",
+    inquireWa: "Enquire on WhatsApp",
+    bookOnPage: "Book on this page",
     navHome: "Home",
     navDepartments: "Departments",
     navDoctors: "Doctors",
@@ -248,7 +286,7 @@ const ui = {
     doctorsTitle: "Meet our medical team",
     doctorsLead:
       "Place your care with specialists who understand your need and explain the plan before any procedure.",
-    allDepartments: "All departments",
+    allDoctors: "All doctors",
     doctorsPageLead: "A select team of doctors and specialists across Tabashir’s departments.",
     noDoctors: "The doctor for this department is confirmed when the appointment is confirmed.",
     noDoctorsLead: "Book a consultation and we will arrange the right specialist for your case.",
@@ -258,7 +296,7 @@ const ui = {
     deptCtaTitle: "Ready to welcome you in this department",
     deptCtaLead: "Choose a suitable time and book with one of our specialists.",
     aboutPageTitle: "About us",
-    aboutPageLead: "Tabashir is a private medical complex in Jeddah: six specialized departments, one file, and a clearer experience from the first visit.",
+    aboutPageLead: "Tabashir is a private medical complex in Jeddah: five specialized departments, one file, and a clearer experience from the first visit.",
     featuredServices: "Highlighted services",
     dermEyebrow: "Dermatology & aesthetics",
     dermTitle: "Specialized care for your skin and hair",
@@ -293,19 +331,22 @@ const ui = {
     aboutEyebrow: "About the clinic",
     aboutTitle: "Medical experience you can trust",
     aboutLead:
-      "Tabashir is a private medical complex in Jeddah, on Prince Sultan Road in As Salamah. Six specialized departments under one roof — we put prevention and clarity before rushing a procedure.",
+      "Tabashir is a private medical complex in Jeddah, on Prince Sultan Road in As Salamah. Five specialized departments under one roof — we put prevention and clarity before rushing a procedure.",
     aboutAlt: "Tabashir Clinics entrance",
     faqEyebrow: "FAQ",
     faqTitle: "Short answers before you book",
     faqLead: "If you don’t find your question, message us on WhatsApp and we will guide you to the right specialty.",
     ctaEyebrow: "Booking",
     ctaTitle: "Your first step toward better care",
+    ctaTitleDoctor: (name: string) => `Book your appointment with ${name}`,
     ctaLead: "Fill in the form, and we’ll contact you shortly to confirm your appointment with the right doctor.",
+    ctaLeadDoctor: "Fill in the form, and we’ll contact you shortly to confirm your appointment.",
     ctaAlt: "A medical consultation in a modern clinic",
     ctaWhatsapp: "Message us on WhatsApp",
     locationEyebrow: "Clinic location",
     openMaps: "Open in Google Maps",
-    footerBlurb: "A private medical complex in Jeddah. Six specialized departments, one file, and a clearer booking path from the first step.",
+    footerBlurb:
+      "Tabashir is a private medical complex in Jeddah, on Prince Sultan Road in As Salamah. Five specialized departments\nunder one roof — we put prevention and clarity before rushing a procedure.",
     specialtiesTitle: "Medical departments",
     linksTitle: "Important links",
     faqLink: "FAQ",
@@ -376,12 +417,15 @@ const ui = {
     leadName: "Full name",
     leadPhone: "Phone number",
     leadDept: "Department",
+    leadDoctor: "Doctor",
     leadSubmit: "Send request",
     leadSent: "Your request was sent",
     leadSentLead: "We will contact you soon. You can also confirm on WhatsApp.",
     leadImageAlt: "Waiting area at Tabashir Clinics",
-    waLead: (name: string, phone: string, dept: string) =>
-      `Hello, I would like to book. Name: ${name} — Mobile: ${phone} — Department: ${dept}`,
+    waLead: (name: string, phone: string, dept: string, doctor?: string) =>
+      doctor
+        ? `Hello, I would like to book. Name: ${name} — Mobile: ${phone} — Department: ${dept} — Doctor: ${doctor}`
+        : `Hello, I would like to book. Name: ${name} — Mobile: ${phone} — Department: ${dept}`,
   },
 } as const;
 
@@ -413,8 +457,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    const nextDir = lang === "ar" ? "rtl" : "ltr";
+    if (document.documentElement.dir !== nextDir) {
+      document.documentElement.dir = nextDir;
+    }
+    if (document.documentElement.lang !== lang) {
+      document.documentElement.lang = lang;
+    }
   }, [lang]);
 
   const value = useMemo(

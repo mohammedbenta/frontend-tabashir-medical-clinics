@@ -1,62 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { Logo, WhatsAppIcon } from "@/components/Logo";
 import { BookButton } from "@/components/BookButton";
+import { DepartmentIcon } from "@/components/DepartmentIcon";
+import { ClockIcon, Logo, MailIcon, PhoneIcon, PinIcon } from "@/components/Logo";
 import { departments } from "@/data/content";
-import { mapsEmbedSrc, mapsHref, site, telHref, whatsappHref } from "@/lib/site";
+import { mapsHref, site, telHref } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
 
 export function Footer() {
   const { lang, t } = useI18n();
   const addressPrimary = lang === "ar" ? site.address : site.addressEn;
-  const addressSecondary = lang === "ar" ? site.addressEn : site.address;
-  const heading = lang === "ar" ? site.legalName : site.nameEn;
-  const subheading = lang === "ar" ? site.nameEn : site.legalName;
 
   return (
     <footer id="contact" className="bg-pine-deep text-paper">
-      <section className="section-glow bg-paper text-ink">
-        <div className="mx-auto grid max-w-[1400px] items-stretch gap-10 px-5 py-14 md:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:py-16">
-          <div className="flex flex-col justify-center">
-            <p className="eyebrow">{t.locationEyebrow}</p>
-            <h2 className="mt-4 text-[1.6rem] font-medium leading-snug tracking-tight text-pine md:text-[1.85rem]">
-              {heading}
-            </h2>
-            <p className="mt-2 text-lg font-medium text-brand">{subheading}</p>
-            <address className="mt-6 max-w-md text-[0.98rem] not-italic leading-8 text-ink-soft">
-              {addressPrimary}
-              <span className="mt-1 block text-muted">{addressSecondary}</span>
-            </address>
-            <a
-              href={mapsHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary mt-7 h-12 w-fit px-6 text-sm"
-            >
-              {t.openMaps}
-            </a>
-          </div>
-          <div className="min-h-[260px] overflow-hidden rounded-[1.5rem] border border-line shadow-[0_8px_32px_-12px_rgba(6,30,29,0.1)]">
-            <iframe
-              title={`${t.locationEyebrow} — ${heading}`}
-              src={mapsEmbedSrc}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-[260px] w-full min-h-[260px] border-0 lg:h-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-16 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:py-20">
-        <div>
-          <Logo className="[&_img]:h-12 [&_img]:md:h-14" />
-          <p className="mt-6 max-w-xs text-[0.95rem] leading-8 text-paper/70">{t.footerBlurb}</p>
-          <BookButton className="mt-7 h-11 px-6 text-sm">{t.book}</BookButton>
+      <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-8 lg:py-20">
+        <div className="flex flex-col gap-12 lg:flex-row lg:justify-between lg:gap-x-16">
+        <div className="min-w-0 lg:max-w-[38rem] lg:flex-1">
+          <Logo className="[&_img]:h-12 [&_img]:w-auto [&_img]:max-w-full [&_img]:md:h-14" />
+          <p className="mt-6 max-w-[38rem] whitespace-pre-line text-[0.95rem] leading-8 text-paper/70">
+            {t.footerBlurb}
+          </p>
+          <BookButton className="mt-7 h-12 w-fit px-6 text-sm">{t.book}</BookButton>
         </div>
 
-        <div>
+        <div className="lg:max-w-[16.5rem] lg:flex-1">
           <h2 className="text-sm font-semibold tracking-wide text-brand">{t.specialtiesTitle}</h2>
           <ul className="mt-5 space-y-3 text-[0.92rem] text-paper/65">
             {departments.map((s) => (
@@ -69,7 +37,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="lg:max-w-[16.5rem] lg:flex-1">
           <h2 className="text-sm font-semibold tracking-wide text-brand">{t.linksTitle}</h2>
           <ul className="mt-5 space-y-3 text-[0.92rem] text-paper/65">
             <li>
@@ -105,50 +73,61 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="lg:max-w-[16.5rem] lg:flex-1">
           <h2 className="text-sm font-semibold tracking-wide text-brand">{t.contactTitle}</h2>
-          <ul className="mt-5 space-y-3.5 text-[0.92rem] leading-7 text-paper/70">
+          <ul className="mt-5 space-y-3 text-[0.92rem] leading-7 text-paper/70">
             <li>
-              <a href={telHref} className="hover:text-paper">
-                {site.phoneDisplay}
+              <a href={telHref} className="inline-flex items-start gap-2.5 hover:text-paper">
+                <PhoneIcon className="mt-1 h-4 w-4 shrink-0 text-brand" />
+                <span dir="ltr">{site.phoneDisplay}</span>
               </a>
             </li>
             <li>
-              <a href={`mailto:${site.email}`} className="hover:text-paper">
+              <a href={`mailto:${site.email}`} className="inline-flex items-start gap-2.5 hover:text-paper">
+                <MailIcon className="mt-1 h-4 w-4 shrink-0 text-brand" />
                 {site.email}
               </a>
             </li>
-            <li>{addressPrimary}</li>
             <li>
-              {t.hours}
-              <span className="mt-1 block text-paper/40">{t.hoursNote}</span>
+              <a
+                href={mapsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-start gap-2.5 hover:text-paper"
+              >
+                <PinIcon className="mt-1 h-4 w-4 shrink-0 text-brand" />
+                <span>{addressPrimary}</span>
+              </a>
+            </li>
+            <li className="inline-flex items-start gap-2.5">
+              <ClockIcon className="mt-1 h-4 w-4 shrink-0 text-brand" />
+              <span>{t.hours}</span>
             </li>
           </ul>
-          <a
-            href={whatsappHref(t.waDefault)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-medium text-white shadow-[0_4px_16px_-4px_rgba(37,211,102,0.4)]"
-          >
-            <WhatsAppIcon className="h-4 w-4" />
-            {t.whatsapp}
-          </a>
-          <div className="mt-5 flex gap-5 text-sm text-paper/50">
-            <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-paper">
-              {t.instagram}
-            </a>
-            <a href={site.twitter} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-paper">
-              X
-            </a>
-          </div>
         </div>
       </div>
+      </div>
+
+      <nav className="border-t border-white/8" aria-label={t.navDepartments}>
+        <ul className="mx-auto flex max-w-[1400px] flex-wrap gap-2 px-5 py-4 md:px-8">
+            {departments.map((d) => (
+              <li key={d.id}>
+                <Link
+                  href={d.href}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-2 text-[0.82rem] font-medium text-paper/80 transition-colors hover:border-brand/40 hover:bg-brand/15 hover:text-paper"
+                >
+                  <DepartmentIcon id={d.id} className="h-3.5 w-3.5 text-brand" />
+                  {d.name[lang]}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       <div className="border-t border-white/8">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-2 px-5 py-6 text-xs text-paper/35 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex max-w-[1400px] px-5 py-6 text-xs text-paper/35 md:px-8">
           <p>
             {t.rights} © {new Date().getFullYear()} {t.clinicAr}
           </p>
-          <p>{t.demoFooter}</p>
         </div>
       </div>
     </footer>

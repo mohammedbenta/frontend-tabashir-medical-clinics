@@ -51,7 +51,10 @@ export function Header() {
   const [mobileDepts, setMobileDepts] = useState(false);
   const menuId = useId();
 
-  const lightPage = pathname === "/privacy" || pathname === "/terms";
+  const lightPage =
+    pathname === "/privacy" ||
+    pathname === "/terms" ||
+    (pathname.startsWith("/doctors/") && pathname !== "/doctors");
   const solid = scrolled || open || lightPage || deptOpen;
 
   useEffect(() => {
