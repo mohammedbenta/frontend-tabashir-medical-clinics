@@ -6,6 +6,7 @@ import { Media } from "@/components/Media";
 import { departments, doctors } from "@/data/content";
 import { BookButton } from "@/components/BookButton";
 import { DepartmentIcon } from "@/components/DepartmentIcon";
+import { whatsappHref } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 
@@ -163,10 +164,12 @@ export function Hero() {
               {t.book}
             </BookButton>
             <a
-              href="#departments"
+              href={whatsappHref(t.waDefault)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-ghost h-12 w-full px-8 text-[0.92rem] sm:h-[3.25rem] sm:w-auto sm:text-[0.95rem]"
             >
-              {t.exploreDepartments}
+              {t.navContact}
             </a>
           </div>
           <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 md:mt-10 md:gap-x-8 md:gap-y-5">
