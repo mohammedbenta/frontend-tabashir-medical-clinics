@@ -15,16 +15,16 @@ export function Footer() {
   return (
     <footer id="contact" className="bg-pine-deep text-paper">
       <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-8 lg:py-20">
-        <div className="flex flex-col gap-12 lg:flex-row lg:justify-between lg:gap-x-16">
-        <div className="min-w-0 lg:max-w-[38rem] lg:flex-1">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.55fr)_repeat(3,minmax(0,1fr))] lg:gap-x-16">
+        <div className="min-w-0">
           <Logo className="[&_img]:h-12 [&_img]:w-auto [&_img]:max-w-full [&_img]:md:h-14" />
-          <p className="mt-6 max-w-[38rem] whitespace-pre-line text-[0.95rem] leading-8 text-paper/70">
+          <p className="mt-6 text-[0.95rem] leading-8 text-paper/70">
             {t.footerBlurb}
           </p>
           <BookButton className="mt-7 h-12 w-fit px-6 text-sm">{t.book}</BookButton>
         </div>
 
-        <div className="lg:max-w-[16.5rem] lg:flex-1">
+        <div>
           <h2 className="text-sm font-semibold tracking-wide text-brand">{t.specialtiesTitle}</h2>
           <ul className="mt-5 space-y-3 text-[0.92rem] text-paper/65">
             {departments.map((s) => (
@@ -37,7 +37,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="lg:max-w-[16.5rem] lg:flex-1">
+        <div>
           <h2 className="text-sm font-semibold tracking-wide text-brand">{t.linksTitle}</h2>
           <ul className="mt-5 space-y-3 text-[0.92rem] text-paper/65">
             <li>
@@ -73,7 +73,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="lg:max-w-[16.5rem] lg:flex-1">
+        <div>
           <h2 className="text-sm font-semibold tracking-wide text-brand">{t.contactTitle}</h2>
           <ul className="mt-5 space-y-3 text-[0.92rem] leading-7 text-paper/70">
             <li>

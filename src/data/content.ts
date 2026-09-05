@@ -183,6 +183,62 @@ export const departments: Department[] = [
     ],
   },
   {
+    id: "plastic-surgery",
+    name: { ar: "جراحة تجميل", en: "Plastic surgery" },
+    description: {
+      ar: "حلول تجميلية وجراحية بمعايير عالية.",
+      en: "Aesthetic and surgical solutions to a high standard.",
+    },
+    href: "/plastic-surgery",
+    image: "/images/specialties/plastic-surgery.jpg",
+    introTitle: {
+      ar: "قرار جراحي يُشرح بهدوء قبل أي خطوة",
+      en: "A surgical decision explained calmly before any step",
+    },
+    intro: {
+      ar: "نقدّم تقييماً تجميلياً وجراحياً واضحاً: ماذا يناسبك، وماذا لا يناسبك، وما المسار المتوقع. الهدف ليس الاستعجال في الإجراء، بل قرار تطمئن إليه.",
+      en: "We offer a clear aesthetic and surgical assessment: what suits you, what does not, and the expected path. The aim is not to rush a procedure, but a decision you can trust.",
+    },
+    whyImage: "/images/tech/treatment.jpg",
+    services: [
+      { ar: "استشارة وتقييم جراحي تجميلي", en: "Aesthetic surgical consultation" },
+      { ar: "إجراءات تجميل الوجه", en: "Facial aesthetic procedures" },
+      { ar: "نحت وتحسين القوام", en: "Body contouring" },
+      { ar: "حلول ترميمية مختارة", en: "Selected reconstructive solutions" },
+      { ar: "خطة واضحة قبل وبعد الإجراء", en: "A clear plan before and after the procedure" },
+    ],
+    faqs: [
+      {
+        q: { ar: "هل كل حالة تحتاج عملية؟", en: "Does every case need surgery?" },
+        a: {
+          ar: "لا. نبدأ بالتقييم، وقد يكون الخيار غير الجراحي أنسب. نشرح البدائل بأمانة قبل أي قرار.",
+          en: "No. We start with assessment, and a non-surgical option may be more suitable. Alternatives are explained honestly before any decision.",
+        },
+      },
+      {
+        q: { ar: "متى تظهر النتيجة؟", en: "When will I see the result?" },
+        a: {
+          ar: "يختلف حسب الإجراء. نوضح الجدول المتوقع والتعافي منذ الاستشارة الأولى.",
+          en: "It depends on the procedure. We explain the expected timeline and recovery from the first consultation.",
+        },
+      },
+      {
+        q: { ar: "هل الاستشارة ملزمة بالإجراء؟", en: "Does a consultation commit me to a procedure?" },
+        a: {
+          ar: "لا. الاستشارة لتوضيح الخيار المناسب. القرار يبقى لك بعد فهم الخطوات والمخاطر المتوقعة.",
+          en: "No. The consultation clarifies the right option. The decision remains yours after you understand the steps and expected risks.",
+        },
+      },
+      {
+        q: { ar: "كيف أحجز استشارة جراحة تجميل؟", en: "How do I book a plastic surgery consult?" },
+        a: {
+          ar: "احجز موعدك واختر جراحة التجميل. سنتواصل لتأكيد الوقت والطبيب المتاح.",
+          en: "Book an appointment and choose plastic surgery. We will contact you to confirm the time and the available doctor.",
+        },
+      },
+    ],
+  },
+  {
     id: "women",
     name: { ar: "نساء وولادة", en: "Women’s health" },
     description: {
@@ -239,57 +295,57 @@ export const departments: Department[] = [
     ],
   },
   {
-    id: "plastic-surgery",
-    name: { ar: "جراحة تجميل", en: "Plastic surgery" },
+    id: "ent",
+    name: { ar: "أنف وأذن وحنجرة", en: "Ear, nose & throat" },
     description: {
-      ar: "حلول تجميلية وجراحية بمعايير عالية.",
-      en: "Aesthetic and surgical solutions to a high standard.",
+      ar: "تشخيص وعلاج واضح لمشكلات الأنف والأذن والحنجرة.",
+      en: "Clear diagnosis and care for ear, nose, and throat conditions.",
     },
-    href: "/plastic-surgery",
-    image: "/images/specialties/plastic-surgery.jpg",
+    href: "/ent",
+    image: "/images/specialties/ent-care.webp",
     introTitle: {
-      ar: "قرار جراحي يُشرح بهدوء قبل أي خطوة",
-      en: "A surgical decision explained calmly before any step",
+      ar: "فحص دقيق… وشرح هادئ قبل العلاج",
+      en: "A careful exam, and a calm explanation before treatment",
     },
     intro: {
-      ar: "نقدّم تقييماً تجميلياً وجراحياً واضحاً: ماذا يناسبك، وماذا لا يناسبك، وما المسار المتوقع. الهدف ليس الاستعجال في الإجراء، بل قرار تطمئن إليه.",
-      en: "We offer a clear aesthetic and surgical assessment: what suits you, what does not, and the expected path. The aim is not to rush a procedure, but a decision you can trust.",
+      ar: "من التهاب الأذن والجيوب إلى بحة الصوت وصعوبة التنفس: نبدأ بفحص واضح، ثم نضع خطة تناسب حالتك داخل المجمع نفسه.",
+      en: "From ear and sinus inflammation to hoarseness and breathing difficulty: we start with a clear exam, then set a plan that fits your case in the same complex.",
     },
-    whyImage: "/images/tech/treatment.jpg",
+    whyImage: "/images/specialties/ent-care.webp",
     services: [
-      { ar: "استشارة وتقييم جراحي تجميلي", en: "Aesthetic surgical consultation" },
-      { ar: "إجراءات تجميل الوجه", en: "Facial aesthetic procedures" },
-      { ar: "نحت وتحسين القوام", en: "Body contouring" },
-      { ar: "حلول ترميمية مختارة", en: "Selected reconstructive solutions" },
-      { ar: "خطة واضحة قبل وبعد الإجراء", en: "A clear plan before and after the procedure" },
+      { ar: "فحص الأذن والأنف والحنجرة", en: "Ear, nose, and throat examination" },
+      { ar: "علاج التهابات الأذن والجيوب", en: "Ear and sinus infection care" },
+      { ar: "تقييم السمع والطنين", en: "Hearing and tinnitus assessment" },
+      { ar: "علاج التهاب الحلق واللوزتين", en: "Throat and tonsil care" },
+      { ar: "استشارات الشخير وصعوبة التنفس", en: "Snoring and breathing consultations" },
     ],
     faqs: [
       {
-        q: { ar: "هل كل حالة تحتاج عملية؟", en: "Does every case need surgery?" },
+        q: { ar: "متى أراجع قسم الأنف والأذن والحنجرة؟", en: "When should I see ENT?" },
         a: {
-          ar: "لا. نبدأ بالتقييم، وقد يكون الخيار غير الجراحي أنسب. نشرح البدائل بأمانة قبل أي قرار.",
-          en: "No. We start with assessment, and a non-surgical option may be more suitable. Alternatives are explained honestly before any decision.",
+          ar: "إذا استمر ألم الأذن أو احتقان الجيوب أو بحة الصوت أو صعوبة التنفس أكثر من المعتاد، أو تكرر الالتهاب.",
+          en: "If ear pain, sinus congestion, hoarseness, or breathing difficulty lasts longer than usual, or infection keeps returning.",
         },
       },
       {
-        q: { ar: "متى تظهر النتيجة؟", en: "When will I see the result?" },
+        q: { ar: "هل الفحص يحتاج تحضيراً معيناً؟", en: "Does the exam need special preparation?" },
         a: {
-          ar: "يختلف حسب الإجراء. نوضح الجدول المتوقع والتعافي منذ الاستشارة الأولى.",
-          en: "It depends on the procedure. We explain the expected timeline and recovery from the first consultation.",
+          ar: "غالباً لا. يفضّل إحضار أي تقارير سابقة أو أدوية تستخدمها للأنف أو الأذن.",
+          en: "Usually no. Bring any previous reports or medicines you use for the nose or ear.",
         },
       },
       {
-        q: { ar: "هل الاستشارة ملزمة بالإجراء؟", en: "Does a consultation commit me to a procedure?" },
+        q: { ar: "هل يعالج القسم الأطفال والكبار؟", en: "Does the department treat children and adults?" },
         a: {
-          ar: "لا. الاستشارة لتوضيح الخيار المناسب. القرار يبقى لك بعد فهم الخطوات والمخاطر المتوقعة.",
-          en: "No. The consultation clarifies the right option. The decision remains yours after you understand the steps and expected risks.",
+          ar: "نعم. نقيّم الحالة ونوجّهك إن احتاج الأمر متابعة أدق داخل المجمع.",
+          en: "Yes. We assess the case and guide you if a more precise follow-up is needed in the complex.",
         },
       },
       {
-        q: { ar: "كيف أحجز استشارة جراحة تجميل؟", en: "How do I book a plastic surgery consult?" },
+        q: { ar: "كيف أحجز في الأنف والأذن والحنجرة؟", en: "How do I book ENT?" },
         a: {
-          ar: "احجز موعدك واختر جراحة التجميل. سنتواصل لتأكيد الوقت والطبيب المتاح.",
-          en: "Book an appointment and choose plastic surgery. We will contact you to confirm the time and the available doctor.",
+          ar: "اختر القسم من نافذة الحجز، أو راسلنا عبر واتساب لترتيب أقرب وقت مناسب.",
+          en: "Choose the department in the booking window, or message us on WhatsApp to arrange the next suitable time.",
         },
       },
     ],
@@ -645,7 +701,7 @@ export const authorityStats = [
     label: { ar: "سنة خبرة تراكمية", en: "Years of combined experience" },
   },
   {
-    value: { ar: "٥", en: "5" },
+    value: { ar: "٦", en: "6" },
     label: { ar: "أقسام طبية في مجمع واحد", en: "Medical departments in one complex" },
   },
   {

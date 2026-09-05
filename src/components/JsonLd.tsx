@@ -41,6 +41,7 @@ export function JsonLd() {
       "Dentistry",
       "Gynecologic",
       "PlasticSurgery",
+      "Otolaryngologic",
     ],
     priceRange: "$$",
   };

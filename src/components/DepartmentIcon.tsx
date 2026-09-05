@@ -61,12 +61,20 @@ const icons = {
     </>
   ),
   ent: (
-    <path
-      d="M8 8.5c0-2.4 1.8-4 4-4s4 1.6 4 4c0 2.2-1.4 3.3-2.4 4.2-.7.6-1.1 1.2-1.1 2v1.8M12 19.2v.2"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-    />
+    <>
+      <path
+        d="M8.6 8.4c0-2.8 2.2-5 5.2-5 3.2 0 5.4 2.4 5.4 5.6 0 4.8-3.2 6.6-3.2 9.6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M10.8 9c.2-1.6 1.4-2.6 2.8-2.6 1.6 0 2.8 1.2 2.8 2.8 0 2-1.4 2.8-2.2 3.6-.8.8-1 1.5-1 2.6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </>
   ),
 } as const;
 

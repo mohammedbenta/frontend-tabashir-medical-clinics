@@ -89,7 +89,7 @@ const ui = {
     deptCtaTitle: "جاهزون لاستقبالك في هذا القسم",
     deptCtaLead: "اختر الوقت المناسب واحجز موعدك مع أحد المتخصصين.",
     aboutPageTitle: "من نحن",
-    aboutPageLead: "تباشير مجمع طبي خاص في جدة: خمسة أقسام متخصصة، وملف واحد، وتجربة أوضح من أول زيارة.",
+    aboutPageLead: "تباشير مجمع طبي خاص في جدة: ستة أقسام متخصصة، وملف واحد، وتجربة أوضح من أول زيارة.",
     featuredServices: "أبرز الخدمات",
     dermEyebrow: "الجلدية والتجميل",
     dermTitle: "عناية متخصصة ببشرتك وشعرك",
@@ -124,7 +124,7 @@ const ui = {
     aboutEyebrow: "عن العيادة",
     aboutTitle: "خبرة طبية تثق بها",
     aboutLead:
-      "تباشير مجمع طبي خاص في جدة، على طريق الأمير سلطان في حي السلامة. خمسة أقسام متخصصة تحت سقف واحد، نضع الوقاية والتوضيح قبل الاستعجال في الإجراء.",
+      "تباشير مجمع طبي خاص في جدة، على طريق الأمير سلطان في حي السلامة. ستة أقسام متخصصة تحت سقف واحد، نضع الوقاية والتوضيح قبل الاستعجال في الإجراء.",
     aboutAlt: "مدخل عيادات تباشير",
     faqEyebrow: "أسئلة شائعة",
     faqTitle: "إجابات مختصرة قبل الحجز",
@@ -139,7 +139,7 @@ const ui = {
     locationEyebrow: "موقع العيادة",
     openMaps: "افتح الموقع في خرائط جوجل",
     footerBlurb:
-      "تباشير مجمع طبي خاص في جدة، على طريق الأمير سلطان في حي السلامة. خمسة أقسام\nمتخصصة تحت سقف واحد، نضع الوقاية والتوضيح قبل الاستعجال في الإجراء.",
+      "تباشير مجمع طبي خاص في جدة، على طريق الأمير سلطان في حي السلامة. ستة أقسام متخصصة تحت سقف واحد، نضع الوقاية والتوضيح قبل الاستعجال في الإجراء.",
     specialtiesTitle: "الأقسام الطبية",
     linksTitle: "روابط مهمة",
     faqLink: "الأسئلة الشائعة",
@@ -296,7 +296,7 @@ const ui = {
     deptCtaTitle: "Ready to welcome you in this department",
     deptCtaLead: "Choose a suitable time and book with one of our specialists.",
     aboutPageTitle: "About us",
-    aboutPageLead: "Tabashir is a private medical complex in Jeddah: five specialized departments, one file, and a clearer experience from the first visit.",
+    aboutPageLead: "Tabashir is a private medical complex in Jeddah: six specialized departments, one file, and a clearer experience from the first visit.",
     featuredServices: "Highlighted services",
     dermEyebrow: "Dermatology & aesthetics",
     dermTitle: "Specialized care for your skin and hair",
@@ -331,7 +331,7 @@ const ui = {
     aboutEyebrow: "About the clinic",
     aboutTitle: "Medical experience you can trust",
     aboutLead:
-      "Tabashir is a private medical complex in Jeddah, on Prince Sultan Road in As Salamah. Five specialized departments under one roof — we put prevention and clarity before rushing a procedure.",
+      "Tabashir is a private medical complex in Jeddah, on Prince Sultan Road in As Salamah. Six specialized departments under one roof — we put prevention and clarity before rushing a procedure.",
     aboutAlt: "Tabashir Clinics entrance",
     faqEyebrow: "FAQ",
     faqTitle: "Short answers before you book",
@@ -346,7 +346,7 @@ const ui = {
     locationEyebrow: "Clinic location",
     openMaps: "Open in Google Maps",
     footerBlurb:
-      "Tabashir is a private medical complex in Jeddah, on Prince Sultan Road in As Salamah. Five specialized departments\nunder one roof — we put prevention and clarity before rushing a procedure.",
+      "Tabashir is a private medical complex in Jeddah, on Prince Sultan Road in As Salamah. Six specialized departments under one roof — we put prevention and clarity before rushing a procedure.",
     specialtiesTitle: "Medical departments",
     linksTitle: "Important links",
     faqLink: "FAQ",

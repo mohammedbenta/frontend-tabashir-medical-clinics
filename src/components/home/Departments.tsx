@@ -14,6 +14,7 @@ export function Departments() {
   const dental = getDepartment("dental")!;
   const women = getDepartment("women")!;
   const plastic = getDepartment("plastic-surgery")!;
+  const ent = getDepartment("ent")!;
 
   return (
     <section id="departments" className="section-glow bg-cream px-5 py-24 md:px-8 md:py-32">
@@ -102,6 +103,30 @@ export function Departments() {
           </Reveal>
 
           <Reveal delay={210}>
+            <Link href={plastic.href} className="premium-card group block overflow-hidden">
+              <div className="img-reveal relative h-52">
+                <Media
+                  src={plastic.image}
+                  alt={plastic.name[lang]}
+                  fill
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-pine-deep/80 via-pine-deep/25 to-transparent" />
+                <div className="absolute inset-0 bg-brand/0 transition-colors duration-500 group-hover:bg-brand/12" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-[1.15rem] font-medium text-pine">{plastic.name[lang]}</h3>
+                <p className="mt-2.5 text-sm leading-7 text-ink-soft">{plastic.description[lang]}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand">
+                  {t.discover}
+                  <ArrowIcon className="h-3.5 w-3.5 transition-transform ltr:group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
+                </span>
+              </div>
+            </Link>
+          </Reveal>
+
+          <Reveal delay={280}>
             <Link href={women.href} className="premium-card group block overflow-hidden">
               <div className="img-reveal relative h-52">
                 <Media
@@ -125,12 +150,12 @@ export function Departments() {
             </Link>
           </Reveal>
 
-          <Reveal delay={280}>
-            <Link href={plastic.href} className="premium-card group block overflow-hidden">
+          <Reveal delay={350}>
+            <Link href={ent.href} className="premium-card group block overflow-hidden">
               <div className="img-reveal relative h-52">
                 <Media
-                  src={plastic.image}
-                  alt={plastic.name[lang]}
+                  src={ent.image}
+                  alt={ent.name[lang]}
                   fill
                   sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover"
@@ -139,8 +164,8 @@ export function Departments() {
                 <div className="absolute inset-0 bg-brand/0 transition-colors duration-500 group-hover:bg-brand/12" />
               </div>
               <div className="p-6">
-                <h3 className="text-[1.15rem] font-medium text-pine">{plastic.name[lang]}</h3>
-                <p className="mt-2.5 text-sm leading-7 text-ink-soft">{plastic.description[lang]}</p>
+                <h3 className="text-[1.15rem] font-medium text-pine">{ent.name[lang]}</h3>
+                <p className="mt-2.5 text-sm leading-7 text-ink-soft">{ent.description[lang]}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand">
                   {t.discover}
                   <ArrowIcon className="h-3.5 w-3.5 transition-transform ltr:group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />

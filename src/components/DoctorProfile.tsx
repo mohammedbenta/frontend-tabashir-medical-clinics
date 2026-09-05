@@ -6,7 +6,7 @@ import { BookButton } from "@/components/BookButton";
 import { WhatsAppIcon } from "@/components/Logo";
 import { AppointmentCTA } from "@/components/home/AppointmentCTA";
 import { type Doctor } from "@/data/content";
-import { mapsHref, site, telHref, whatsappHref } from "@/lib/site";
+import { mapsEmbedSrc, mapsHref, site, whatsappHref } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 
@@ -134,12 +134,15 @@ export function DoctorProfile({ doctor }: { doctor: Doctor }) {
             <p className="eyebrow">{t.seesAt}</p>
             <h2 className="mt-3 text-2xl font-light tracking-tight text-pine">{t.clinicAr}</h2>
             <p className="mt-3 text-sm leading-7 text-ink-soft">{address}</p>
-            <a href={telHref} className="mt-4 block text-2xl font-light text-pine" dir="ltr">
-              {site.phoneDisplay}
-            </a>
-            <a href="#booking" className="btn-primary mt-6 h-12 w-full text-sm">
-              {t.bookOnPage}
-            </a>
+            <div className="mt-5 overflow-hidden rounded-2xl border border-line">
+              <iframe
+                title={`${t.locationEyebrow} — ${t.clinicAr}`}
+                src={mapsEmbedSrc}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-[220px] w-full border-0"
+              />
+            </div>
             <a
               href={whatsappHref(t.waDoctor(doctor.name[lang]))}
               target="_blank"
