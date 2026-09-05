@@ -102,7 +102,7 @@ function HeroTrust({
   iconClassName?: string;
 }) {
   return (
-    <div className="flex items-center gap-2.5 md:gap-3">
+    <div className="flex items-center gap-2.5 max-md:flex-col max-md:items-center max-md:gap-1.5 max-md:text-center md:gap-3">
       <svg
         viewBox="0 0 24 24"
         className={cn("h-6 w-6 shrink-0 md:h-7 md:w-7", iconClassName ?? "text-brand")}
@@ -112,8 +112,8 @@ function HeroTrust({
         {children}
       </svg>
       <div>
-        <p className="text-[0.88rem] font-medium leading-snug text-paper md:text-[0.95rem]">{value}</p>
-        <p className="mt-0.5 text-[0.68rem] font-medium leading-4 text-paper/55 md:text-[0.72rem] md:leading-5">
+        <p className="text-[0.88rem] font-medium leading-snug text-paper max-md:text-[0.95rem] md:text-[0.95rem]">{value}</p>
+        <p className="mt-0.5 text-[0.68rem] font-medium leading-4 text-paper/55 max-md:text-[0.7rem] md:text-[0.72rem] md:leading-5">
           {label}
         </p>
       </div>
@@ -145,7 +145,12 @@ export function Hero() {
               lang === "en" ? "mr-auto text-left" : "ml-auto text-right",
             )}
           >
-          <p className="inline-flex max-w-full items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3.5 py-1.5 text-[0.65rem] font-medium tracking-[0.12em] text-brand sm:px-4 sm:text-[0.7rem] sm:tracking-[0.14em]">
+          <p
+            className={cn(
+              "inline-flex max-w-full items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3.5 py-1.5 text-[0.65rem] font-medium text-brand sm:px-4 sm:text-[0.7rem]",
+              lang === "en" ? "max-md:tracking-normal md:tracking-[0.14em]" : "tracking-normal",
+            )}
+          >
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
             <span className="truncate">{t.heroEyebrow}</span>
           </p>
@@ -172,7 +177,7 @@ export function Hero() {
               {t.navContact}
             </a>
           </div>
-          <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 md:mt-10 md:gap-x-8 md:gap-y-5">
+          <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 max-md:grid max-md:w-full max-md:grid-cols-3 max-md:gap-x-3 md:mt-10 md:gap-x-8 md:gap-y-5">
             <li>
               <HeroTrust
                 value={t.googleRating}

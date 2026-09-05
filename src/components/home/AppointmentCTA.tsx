@@ -104,7 +104,7 @@ export function AppointmentCTA({
             ) : (
               <form onSubmit={submit} className="mt-7 space-y-3.5 text-start">
                 <label className="block">
-                  <span className="mb-1.5 block text-xs font-medium tracking-wide text-paper/65">
+                  <span className="mb-1.5 block text-xs font-medium tracking-normal text-paper/65 ltr:tracking-wide">
                     {t.leadName}
                   </span>
                   <input
@@ -118,7 +118,7 @@ export function AppointmentCTA({
                   />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-xs font-medium tracking-wide text-paper/65">
+                  <span className="mb-1.5 block text-xs font-medium tracking-normal text-paper/65 ltr:tracking-wide">
                     {t.leadPhone}
                   </span>
                   <input
@@ -133,7 +133,7 @@ export function AppointmentCTA({
                   />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-xs font-medium tracking-wide text-paper/65">
+                  <span className="mb-1.5 block text-xs font-medium tracking-normal text-paper/65 ltr:tracking-wide">
                     {t.leadDept}
                   </span>
                   <span className="relative block">

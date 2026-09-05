@@ -25,7 +25,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold tracking-wide text-brand">{t.specialtiesTitle}</h2>
+          <h2 className="text-sm font-semibold tracking-normal text-brand ltr:tracking-wide">{t.specialtiesTitle}</h2>
           <ul className="mt-5 space-y-3 text-[0.92rem] text-paper/65">
             {departments.map((s) => (
               <li key={s.id}>
@@ -38,7 +38,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold tracking-wide text-brand">{t.linksTitle}</h2>
+          <h2 className="text-sm font-semibold tracking-normal text-brand ltr:tracking-wide">{t.linksTitle}</h2>
           <ul className="mt-5 space-y-3 text-[0.92rem] text-paper/65">
             <li>
               <Link href="/" className="transition-colors hover:text-paper">
@@ -74,7 +74,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold tracking-wide text-brand">{t.contactTitle}</h2>
+          <h2 className="text-sm font-semibold tracking-normal text-brand ltr:tracking-wide">{t.contactTitle}</h2>
           <ul className="mt-5 space-y-3 text-[0.92rem] leading-7 text-paper/70">
             <li>
               <a href={telHref} className="inline-flex items-start gap-2.5 hover:text-paper">

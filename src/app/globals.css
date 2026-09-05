@@ -249,7 +249,7 @@ input[type="date"] {
 }
 
 .eyebrow {
-  letter-spacing: 0.18em;
+  letter-spacing: 0;
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -258,6 +258,12 @@ input[type="date"] {
 
 html[dir="ltr"] .eyebrow {
   letter-spacing: 0.14em;
+}
+
+@media (max-width: 767px) {
+  html[dir="ltr"] .eyebrow {
+    letter-spacing: 0;
+  }
 }
 
 .prose-ar p {
